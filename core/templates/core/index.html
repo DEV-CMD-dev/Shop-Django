@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MyShop - Home</title>
+    <link rel="stylesheet" href="{% static 'core/css/_navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/_footer.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        {% include "core/_navbar.html" %}
+
+        <div class="container">
+            <h1>Welcome to Nexa!</h1>
+            <p>Discover amazing digital products and subscriptions.</p>
+        </div>
+
+        {% include "core/_footer.html" %}
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right top, #483374, #4a2e6d, #4b2966, #4c255f, #4c2058, #4b1f59, #491e5a, #481d5b, #432165, #3b266f, #2e2b79, #133083);
+    color: white;
+}
+
+.container {
+    width: 500px;
+    margin: 10rem auto;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    background-color: rgba(189, 189, 189, 0.1);
+    border-left: 3px solid #fff;
+    font-family: 'Space Mono', monospace;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
