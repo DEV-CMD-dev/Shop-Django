@@ -1,0 +1,28 @@
+.hero {
+    width: 520px;
+    margin: 12rem auto 2rem;
+    padding: 2.5rem;
+    background: rgba(189, 189, 189, 0.1);
+    border-left: 3px solid #fff;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}

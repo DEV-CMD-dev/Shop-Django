@@ -1,0 +1,22 @@
+<div class="product-card">
+    <div class="product-header">
+        <h3>{{ product.title }}</h3>
+
+        {% if product.is_subscription %}
+        <span class="badge">Підписка</span>
+        {% else %}
+        <span class="badge one-time">Разова покупка</span>
+        {% endif %}
+    </div>
+
+    <p class="product-description">{{ product.description }}</p>
+
+    {% if product.is_subscription and product.duration_days %}
+    <p class="product-duration">Тривалість: {{ product.duration_days }} днів</p>
+    {% endif %}
+
+    <div class="product-footer">
+        <span class="price">{{ product.price }} ₴</span>
+        <button class="buy-btn">Купити</button>
+    </div>
+</div>

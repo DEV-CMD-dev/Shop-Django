@@ -1,0 +1,42 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'core/css/_navbar.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/_footer.css' %}">
+<link rel="stylesheet" href="{% static 'products/css/_product.css' %}">
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+
+{% include "core/_navbar.html" %}
+
+<div class="products">
+    {% for product in products %}
+    <div class="product-card">
+        <div class="product-header">
+            <h3>{{ product.title }}</h3>
+
+            {% if product.is_subscription %}
+            <span class="badge">Підписка</span>
+            {% else %}
+            <span class="badge one-time">Разово</span>
+            {% endif %}
+        </div>
+
+        <p>{{ product.description }}</p>
+
+        {% if product.is_subscription %}
+        <p>Тривалість: {{ product.duration_days }} днів</p>
+        {% endif %}
+
+        <div class="product-footer">
+            <span class="price">{{ product.price }} ₴</span>
+            <button class="buy-btn">Купити</button>
+
+            <form action="{% url 'products:delete_product' product.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Видалити</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% include "core/_footer.html" %}
