@@ -1,4 +1,9 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'products/css/add_product.css' %}">
+
 <form method="post">
+    <h2>Add New Product</h2>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Add product</button>
