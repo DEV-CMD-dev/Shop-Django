@@ -7,36 +7,52 @@
 
 {% include "core/_navbar.html" %}
 
-<div class="products">
+<div class="products-grid">
     {% for product in products %}
     <div class="product-card">
+
+        {% if product.image %}
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        </div>
+        {% endif %}
+
         <div class="product-header">
             <h3>{{ product.title }}</h3>
 
             {% if product.is_subscription %}
-            <span class="badge">Підписка</span>
+            <span class="badge">Subscription</span>
             {% else %}
-            <span class="badge one-time">Разово</span>
+            <span class="badge one-time">One time</span>
             {% endif %}
         </div>
 
-        <p>{{ product.description }}</p>
+        <p class="product-description">{{ product.description }}</p>
 
         {% if product.is_subscription %}
-        <p>Тривалість: {{ product.duration_days }} днів</p>
+        <p class="product-duration">
+            Expiry in: {{ product.duration_days }} days
+        </p>
         {% endif %}
 
         <div class="product-footer">
-            <span class="price">{{ product.price }} ₴</span>
-            <button class="buy-btn">Купити</button>
+            <span class="price">{{ product.price }} $</span>
 
-            <form action="{% url 'products:delete_product' product.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="delete-btn">Видалити</button>
-            </form>
+            <div class="actions">
+                <button class="buy-btn">Buy</button>
+
+                <form action="{% url 'products:delete_product' product.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">Delete</button>
+                </form>
+            </div>
         </div>
+
     </div>
     {% endfor %}
 </div>
+
+
+
 
 {% include "core/_footer.html" %}

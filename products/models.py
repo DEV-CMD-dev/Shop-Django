@@ -4,6 +4,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Product(models.Model):
     title = models.CharField(max_length = 80)
     description = models.CharField(max_length=200)
+    image = models.ImageField(
+        upload_to="products/",
+        blank=True,
+        null=True
+    )
     price = models.PositiveIntegerField(
         validators = [MinValueValidator(1)]
     )
