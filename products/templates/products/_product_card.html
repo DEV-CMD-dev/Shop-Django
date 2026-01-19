@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="product-card">
+
+    {% if product.image %}
+    <div class="product-image">
+        <img src="{{ product.image.url }}" alt="{{ product.title }}">
+
+        <a href="{% url 'products:toggle_favorite' product.id %}"
+            class="fav-btn {% if product.id in favorites_ids %}active{% endif %}">
+            <i class="fa-solid fa-heart"></i>
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="product-header">
+        <h3>{{ product.title }}</h3>
+
+        {% if product.is_subscription %}
+        <span class="badge">Subscription</span>
+        {% else %}
+        <span class="badge one-time">One time</span>
+        {% endif %}
+    </div>
+
+    <p class="product-description">{{ product.description }}</p>
+
+    {% if product.is_subscription and product.duration_days %}
+    <p class="product-duration">Expiry in: {{ product.duration_days }} days</p>
+    {% endif %}
+
+    <div class="product-footer">
+        <span class="price">{{ product.price }} $</span>
+
+        <div class="actions">
+            <button class="buy-btn">Buy</button>
+
+            <form action="{% url 'products:delete_product' product.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

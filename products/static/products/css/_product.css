@@ -19,7 +19,6 @@
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
     box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
 }
 
@@ -28,6 +27,7 @@
     border-radius: 12px;
     overflow: hidden;
     background: #1d1c2e;
+    position: relative;
 }
 
 .product-image img {
@@ -108,6 +108,7 @@
 .delete-btn {
     background: #c91010;
     color: #fff;
+    text-decoration: none;
 }
 
 .buy-btn:hover,
@@ -125,4 +126,50 @@
     .actions {
         justify-content: space-between;
     }
+}
+
+.fav-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: transform .15s ease, background .15s ease;
+}
+
+.fav-btn i {
+    font-size: 18px;
+    color: #fff;
+    opacity: .7;
+    transition: color .15s ease, opacity .15s ease;
+}
+
+.fav-btn:hover {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.fav-btn:hover i {
+    opacity: 1;
+}
+
+.fav-btn.active {
+    background: rgba(255, 0, 80, 0.85);
+}
+
+.fav-btn.active i {
+    color: #fff;
+    opacity: 1;
 }

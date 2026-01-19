@@ -8,12 +8,15 @@
 {% include "core/_navbar.html" %}
 
 <div class="products-grid">
+    {% if products %}
     {% for product in products %}
     {% include "products/_product_card.html" %}
-    {% empty %}
-    <p style="text-align:center; opacity:.7; margin:4rem 0;">No products found.</p>
     {% endfor %}
+    {% else %}
+    <p style="opacity:.7; margin:4rem auto; text-align:center;">
+        No favorites yet.
+    </p>
+    {% endif %}
 </div>
-
 
 {% include "core/_footer.html" %}
