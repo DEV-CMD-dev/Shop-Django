@@ -1,10 +1,36 @@
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="{% static 'products/css/add_product.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="{% static 'core/css/forms.css' %}">
+</head>
 
-<form method="post" enctype="multipart/form-data">
-    <h2>Add New Product</h2>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add product</button>
-</form>
+<body class="page-wrapper">
+    {% include "core/_navbar.html" %}
+
+    <div class="auth-page">
+        <form method="post" enctype="multipart/form-data" class="auth-card">
+            {% csrf_token %}
+            <h1>Add New Product</h1>
+
+            {{ form.non_field_errors }}
+
+            {% for field in form %}
+            <div class="field">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+
+    {% include "core/_footer.html" %}
+</body>
+
+</html>

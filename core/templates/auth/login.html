@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'core/css/forms.css' %}">
+</head>
+
+<body class="page-wrapper">
+    {% include "core/_navbar.html" %}
+    <div class="auth-page">
+        <form method="post" class="auth-card">
+            {% csrf_token %}
+            <h1>Log In</h1>
+
+            {{ form.non_field_errors }}
+
+            <div class="field">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+
+            <div class="field">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+
+            <button type="submit" class="btn primary">Log In</button>
+
+            <p class="muted">
+                No account? <a href="{% url 'register' %}">Create one</a>
+            </p>
+        </form>
+    </div>
+    {% include "core/_footer.html" %}
+</body>
+
+</html>

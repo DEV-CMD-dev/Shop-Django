@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from .forms import ProductForm
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from .models import Product, Favorite
 
 def products_view(request):
     products = Product.objects.all()
@@ -41,20 +43,16 @@ def favorites_view(request):
     })
 
 
+@login_required
 def toggle_favorite(request, product_id):
-    request.session.setdefault('favorites', [])
-    favorites = request.session['favorites']
+    product = get_object_or_404(Product, id=product_id)
 
-    if product_id in favorites:
-        favorites.remove(product_id)
-        is_favorite = False
-    else:
-        favorites.append(product_id)
-        is_favorite = True
+    fav, created = Favorite.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
 
-    request.session.modified = True
+    if not created:
+        fav.delete()
 
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return JsonResponse({'success': True, 'is_favorite': is_favorite})
-
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect(request.META.get("HTTP_REFERER", "/"))
