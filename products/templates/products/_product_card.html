@@ -7,7 +7,7 @@
         <img src="{{ product.image.url }}" alt="{{ product.title }}">
 
         <a href="{% url 'products:toggle_favorite' product.id %}"
-            class="fav-btn {% if product.id in favorites_ids %}active{% endif %}">
+            class="fav-btn {% if product.id in favorite_ids %}active{% endif %}">
             <i class="fa-solid fa-heart"></i>
         </a>
     </div>

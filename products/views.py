@@ -32,11 +32,12 @@ def delete_product(request, pk):
     return render(request, {'product': product})
 
 def favorites_view(request):
-    ids = request.session.get('favorites', [])
-    products = Product.objects.filter(id__in=ids)
+    favorite_ids = request.session.get('favorites', [])
+    products = Product.objects.filter(id__in=favorite_ids)
 
     return render(request, 'products/favorites.html', {
-        'products': products
+        'products': products,
+        'favorite_ids': favorite_ids,
     })
 
 
